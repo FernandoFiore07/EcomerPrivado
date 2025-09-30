@@ -1,3 +1,6 @@
+const config = window.AppConfig || {};
+const BASE_URL = config.BASE_URL || new URL('./', window.location.href).toString();
+
 let loginBlock = document.querySelector(".login");
 let btnLogin = loginBlock.querySelector(".login__button");
 let userNameField = loginBlock.querySelector(".user__input");
@@ -13,11 +16,7 @@ function userSession(user,password){
     if(user && password){
         localStorage.setItem("userName",user)
 
-        /* Si vas a trabajar en local descomentar el localhost y comenta el location hacia el github*/
-        window.location.href = "http://127.0.0.1:5500/";
-
-        /*Si vas a subir el archivo comenta el localhost y descomenta el location de abajo*/ 
-        //window.location.href = "https://donsebamarquez.github.io/EcommerceJap/";
+        window.location.href = BASE_URL;
 
         resetValues();
         errorAlert.innerHTML = "";
@@ -68,4 +67,4 @@ btnLogin.addEventListener("click",()=>{
 
     userSession(user(userName),password(userPassword));
 
-})
+});
